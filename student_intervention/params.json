@@ -1,0 +1,1 @@
+{"presort": "auto", "loss": "deviance", "verbose": 0, "subsample": 1.0, "max_leaf_nodes": null, "learning_rate": 0.004, "warm_start": false, "min_samples_leaf": 1, "n_estimators": 100, "min_samples_split": 2, "init": null, "min_weight_fraction_leaf": 0.0, "random_state": 1, "max_features": null, "max_depth": 7}
