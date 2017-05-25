@@ -1,8 +1,8 @@
-###Machine Learning Engineer Nanodegree
-##Capstone Proposal
+Machine Learning Engineer Nanodegree
+Capstone Proposal
 Partha Deka
 February 13th, 2017
-###Domain Background
+Domain Background
 I have chosen the Investment and Trading Capstone project provided as one of the options. I wanted to use my Machine Learning knowledge to solve a real problem and where I can learn the domain too. I have always been interested in investment and trading as an amateur and now I want to use my machine learning knowledge and see if it could help in predicting stock prices in the short-term future.  I extensively took help of the free courses – “Machine learning for Trading” and “Time Series Forecasting” for this Capstone Project. 
 Problem Statement
 Build machine learning models that learn from historical stock price attributes and predict the stock price on a future date (any day after the last training date), I am only predicting the Adjusted Closing pricing. 
@@ -24,7 +24,7 @@ https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
 http://www.inertia7.com/projects/time-series-stock-market-python
 
 
-###Datasets and Inputs
+Datasets and Inputs
 I have downloaded daily historical stocks data from Yahoo Finance between 12-05-2011 and 12-02-2016 for the following stocks along with SNP 500(American Market index, I want to see how these stock trend with respect to market trends explained by SNP 500). Also, please note that ‘Facebook’ went public around 2013 timeframe, so we have don’t data for ‘Facebook’ prior to that:
 'AAPL', 'GOOG', 'AMZN', 'FACEBOOK', 'GE', 'GLD', 'MICROSOFT'
  Each of this stock has the following attributes:
@@ -34,7 +34,7 @@ The solution would be to build a Python based machine learning regression model 
 Benchmark Model
 The benchmark scores for the models: R2 Score of 0.6 on test data (unseen data) and a R2 Score of 0.85 on train data.  Additionally, on an average the predicted prices for all the models must be more or less within +/- 5% of the actual stock prices.
 
-###Evaluation Metrics
+Evaluation Metrics
 R2 score on the train and test datasets are calculated to measure the performance of the model. Best possible score is 1. Besides R2 score, I am also calculating the variation of the predicted stock price compared to the actual prices in the test dataset. R2 Score is used to test the performance of all three models – Linear Regression, KNN Regression and ARIMA
 
 For e.g.: 
@@ -44,14 +44,14 @@ The prediction on the test dataset 6 days after the training date for GOOG is +/
 
 In statistics, the coefficient of determination, denoted R2 or r2 and pronounced "R squared", is a number that indicates the proportion of the variance in the dependent variable that is predictable from the independent variable. The coefficient R^2 is defined as (1 - u/v), where u is the regression sum of squares ((y_true - y_pred) ** 2). sum () and v is the residual sum of squares ((y_true - y_true. mean ()) ** 2). sum (). Best possible score is 1.0 and it can be negative (because the model can be arbitrarily worse). A constant model that always predicts the expected value of y, disregarding the input features, would get a R^2 score of 0.0.
 
-###Source: 
+Source: 
 http://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html
 
 http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression.score
 
 https://en.wikipedia.org/wiki/Coefficient_of_determination
 
-###Project Design:
+Project Design:
 I would start-off with various financial analysis of the historical data such as plotting a comparative analysis of the various stocks prices, plotting the normalized stock prices, plotting daily returns, plotting Bollinger bands, calculating cumulative returns, creating portfolio stocks, plotting portfolio statistics, Optimizing the Portfolio by optimizing the Sharpe ratio, scatter plots. Also, co-relation between my portfolio daily return and SNP_500 daily return, Beta value to see how reactive is my optimized portfolio compared to the market, alpha value to see how well it performs compared to the market.
 
 The next part would be to build machine learning models to predict ‘Adj Close’ price for a future date as discussed above. Please note that the reason for doing the financial analysis on the historical is to kind of depict that we can do the same analysis on the Predicted Stock prices. Although the goal of this project is just to predict the ‘Adj Close’ price for a stock for a particular future, to build a real investment strategy we need to perform financial perform analysis on the predicted stocks such as maintaining an optimized portfolio.
