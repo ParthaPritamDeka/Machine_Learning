@@ -21,7 +21,7 @@ In a terminal or command window, navigate to the top-level project directory `st
 ```ipython notebook student_intervention.ipynb```  
 ```jupyter notebook student_intervention.ipynb```
 
-This will open the iPython Notebook software and project file in your browser.
+This will open the iPython Notebook software and project file in the browser.
 
 ## Data
 
