@@ -1,0 +1,4 @@
+Both AdaBoost and gradient boosting follow the same fundamental idea: 
+Both algorithms boost the performance of a simple base-learner by iteratively shifting the focus towards problematic observations 
+that are difficult to predict. With AdaBoost, this shift is done by up-weighting observations that were misclassified before. 
+Gradient boosting identifies difficult observations by large residuals computed in the previous iterations.
