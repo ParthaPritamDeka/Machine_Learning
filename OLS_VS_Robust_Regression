@@ -1,0 +1,55 @@
+What is robust regression? It's an umbrella term for methods of linear regression that aim to mitigate the effect of outliers (and/or heteroscedasticity). The answer is partially in the question.
+
+Here's a token picture that makes robust regression (solid line) look way better than OLS. Intuitively we want our regression method to ignore those pesky outliers and follow the true trend of the majority of the data.
+
+
+What is the problem with outliers? If they are influential (as above) then they change the shape of the regression curve. If they are not influential then the regression curve is of the correct shape, but your estimate of the standard error will be skewed. So your confidence bands will be overly wide. What is an influential observation? One that is going to significantly change the shape of your regression curve, see Influential Observations.
+
+Robust regression sounds like one particular method, but there's lots of ways of doing this. 
+
+The most obvious is by minimizing absolute difference instead of squared difference. Q: "But that's not differentiable!?" A: "It's still a convex optimization problem. So it's really not a problem computationally." Think about why minimizing ||Y−βX||1||Y−βX||1 is more robust to outliers than minimizing ||Y−βX||22||Y−βX||22.
+The absolute difference can be inefficient, i.e. the curve can have higher variance. It would be cool to used square difference for points that are not outliers, and use absolute difference for outliers.
+
+More about 2. This is the most frequently used method of robust linear regression. M-estimators [Mle-like Estimators] are a generalization of OLS, where we can consider performing more interesting transformations to our residuals than simply squaring them. So alongside the familiar ρ(ϵi)=ϵ2iρ(ϵi)=ϵi2 or ρ(ϵi)=|ϵi|ρ(ϵi)=|ϵi| where ϵiϵi is the ith residual... Why not 
+
+This uses absolute error for outliers and least squares error for non-outliers. Can you see why this forces outliers to have less of an effect? There's a tuning parameter of c which can be chosen by cross-validation. For really small c we have least squares, for really large c we have absolute difference - this is a bridge between the two. It's optimization is convex once again.
+
+The take-home message is, don't necessarily remove outliers. If you have highly influential observations that are skewing your regression (you can determine this using Cook's distance - if you use lm in R this is automatically computed and displayed as one of the four diagnostic plots) then you can employ a robust regression scheme. 
+
+The price you pay for robust regression is wider confidence bands, people have looked into the problem of getting tighter confidence bands whilst keeping the regression robust. This leads to considerations of M-estimators, 2) is a proposed solution. If you have lots of data then your confidence bands will be less of an issue and robust regression seems wholly preferable.
+
+For more info, read:  Robust Regression - Brian Ripley
+Also the function rlm in R (written by Ripley) does this all for you.
+9.6k Views · 79 Upvotes
+Upvote79Downvote
+Share
+Bookmark
+RecommendedAll
+Partha Deka
+
+Promoted by qplum
+Not invested? Say good-bye to 66% of your wealth.
+Don't lose anymore money.
+Start now at qplum.co
+Lee Witt
+Lee Witt, Have had my Ph.D. in statistics since 1989 (my beard is over 40 years old)
+Answered Jun 8, 2015
+The reason OLS is "least squares" is that the fitting process involves minimizing the L2 distance (sum of squares of residuals) from the data to the line (or curve, or surface: I'll use line as a generic term from here on) being fit. The problem is that, primarily due to the squaring, data values with large residuals could have a large amount of influence on the position of the fitted line. Simple tossing away outliers based solely on the fact that they are outliers is a huge "do not do" in statistics, so therein lies a problem.
+Most robust regression procedures don't work with the L2 norm. Robust regression based on M - estimation obtains estimates by minimizing a non-negative function of the residuals. The first methods (presented by Huber) dealt with case where the function of the residuals (the "disperson function") resembled least squares "for residuals near zero" and L1 (absolute value) for larger residuals. The result is that the influence of those observations was lessened. 
+Another approach to robust regression was based on rank estimates. If you think of the least squares estimates as being defined by finding the minimum of 
+
+∑nk=1e2k=∑nk=1ek⋅ek∑k=1nek2=∑k=1nek⋅ek
+
+where the e-values are the residuals, the methods based on ranks finds the
+minimum value of 
+
+∑nk=1an(ek)⋅ek∑k=1nan(ek)⋅ek
+
+where a1,a2,…,ana1,a2,…,an are scores (fancy name for weights). 
+
+The first generation of M- and R-based regression estimates were both more insensitive to outliers in the response than least squares, but were no better for outliers in the x-space. Much improvement has been made in that area. With the wide availability of software that makes both types (and others) of regression procedures as easy to perform as OLS, the majority of users won't need to worry about the nitty gritty computational details. 
+
+In short, robust regression is a family of procedures that
+* can be used to perform linear regression, simple or multiple, much as OLS is performed
+* Robust regression can protect you, to a point,  from the influence of extreme outliers
+* Tests for model significance and for variables can be performed, just as with OLS
