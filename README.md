@@ -1,5 +1,5 @@
-# Machine_Learning
-# All Machine Projects:
+# The Repository has all the projects that I completed for my "Udacity Machine Learning Engineer Nanodegree"
+# Please refer below:
 
 # "Capstone Project": Built a stock price predictor - This work involved research in financial data analysis as well as trying out various machine learning techniques such as Polynomial learn Regression, KNN, ARIMA for predicting stock prices. Finally, I have used Linear Regression to predict stock prices one day ,7 days, 14 days, 28 days in future with ‘>=.85’ R-squared score on the test datasets
 
